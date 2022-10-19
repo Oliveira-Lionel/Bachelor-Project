@@ -47,25 +47,23 @@ with st.container():
         st.empty()
     l_col, r_col = st.columns((1, 4))
     with l_col:
-        st.write("##")
-        st.write("##")
         mode = st.radio(
             "Select a mode",
             ('Classification', 'Comparison', 'Vulnerability', 'Analysis'))
 
     with r_col:
         if mode == 'Classification':
-            st.text_area('Paste your code below', height=250)
+            st.text_area('Paste your code below')
             st.button('Classify')
         if mode == 'Comparison':
-            st.text_area('Paste your first code below', height=250)
-            st.text_area('Paste your second code below', height=250)
+            st.text_area('Paste your first code below')
+            st.text_area('Paste your second code below')
             st.button('Compare')
         if mode == 'Vulnerability':
-            st.text_area('Paste your code below', height=250)
+            st.text_area('Paste your code below')
             st.button('Check for vulnerability')
         if mode == 'Analysis':
-            st.text_area('Paste your code below', height=250)
+            st.text_area('Paste your code below')
             st.button('Analyse')
 
 # FOOTER

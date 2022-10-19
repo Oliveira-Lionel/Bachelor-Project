@@ -71,32 +71,6 @@ with st.container():
         </div>
         ''', unsafe_allow_html=True)
 st.write("##")
-with st.container():
-    l_col, r_col = st.columns(2)
-    with l_col:
-        st.markdown(f'''
-        <div id="mbox_left" class="mbox">
-            <img class="img_mbox" src="data:image/jpg;base64,{data_url_m2}">
-            <h2 class="title_mbox">Missing Model 3</h2>
-            <div class="description_mbox">It's a simple and effective Deep Learning Approach to detect malware 
-            based on Image Representation of Bytecode.</div>
-            <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/Android_Malware_Detection" target="_self">Try the DEMO out</a>
-            </div>
-        </div>
-        ''', unsafe_allow_html=True)
-    with r_col:
-        st.markdown(f'''
-        <div class="mbox">
-            <img class="img_mbox" src="data:image/jpg;base64,{data_url_m2}">
-            <h2 class="title_mbox">Missing Model 4</h2>
-            <div class="description_mbox">It's a simple and effective Deep Learning Approach to detect malware 
-            based on Image Representation of Bytecode.</div>
-            <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/Android_Malware_Detection" target="_self">Try the DEMO out</a>
-            </div>
-        </div>
-        ''', unsafe_allow_html=True)
 
 # FOOTER
 # Convert png file to base64
