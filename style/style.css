@@ -1,0 +1,220 @@
+/* General - Size of Multiple Text (Default Text, Widgets & Multipage Sidebar) */
+body, .css-ungq1h, .st-af, .css-8hkptd, p, ol, ul, dl {
+  font-size: calc(.4em + 0.8vw);
+}
+
+/* General - Color of a Link (Homepage - Model Boxes) */
+.css-18uc3a4 a {
+  color: #1A1A3F;
+}
+
+/* Header - Being able to display the "Contact" Link over the header image with the SnT logo */
+.css-1v0mbdj {
+  position: relative;
+  margin-bottom: -1%;
+}
+
+/* Header - Position and Style of the "Contact" Link */
+#contact {
+  font-size: calc(0.5em + 1.5vw);
+  font-weight: bold;
+  color: #575759;
+  text-decoration: none;
+  position: absolute;
+  bottom: calc(0.5em + 1.1vw);
+  right: 10%;
+}
+
+/* Header - Have same space of the header with the body content for the Contact Form (no "Contact" Link needed there) */
+#contact_filler {
+  display: none;
+  font-size: calc(0.5em + 1.5vw);
+  position: absolute;
+  bottom: calc(0.5em + 1.1vw);
+  right: 10%;
+}
+
+/* General - Style of Text with id title */
+#title{
+  font-size: calc(.5em + 1.4vw);
+  font-weight: bold;
+}
+
+/* General - Style of Text with id content */
+#content{
+  font-size: calc(.4em + 0.8vw);
+  text-align: justify;
+}
+
+/* General - Button Appearance */
+button {
+  color: #edf6f9;
+  background-color: #659395;
+  border: 1.5px solid #edf6f9;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+}
+
+/* General - Hovering the Button with the Cursor changes the Color */
+button:hover {
+  color: #1A1A3F;
+  border-color: #1A1A3F;
+}
+
+/* Widget Button Appearance*/
+.css-13p5tys {
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Footer - Style of SNT Text */
+.bold_text {
+  font-size: calc(.5em + 1.1vw);
+  font-weight: bold;
+}
+
+/* Footer - Style of SNT Text */
+.snt_text {
+  font-size: calc(.4em + 0.5vw);
+  text-align: justify;
+}
+
+/* Footer - Position of the Twitter Logo */
+.center_pos {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 70px;
+}
+
+/* Homepage - Model Boxes */
+.mbox {
+  max-width: 370px;
+  box-sizing: border-box;
+  transition-duration: 0.6s;
+  background-color: #edf6f9;
+  border-radius: 4px;
+  border-color: #edf6f9;
+  overflow: hidden;
+}
+
+/* Homepage - Center left Model Boxes */
+#mbox_left {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Homepage - Hovering the Model Boxes results in a small effect */
+.mbox:hover{
+  transform: translate(-0%, -3%);
+}
+
+/* Homepage - Position of Images in the Model Boxes */
+.img_mbox {
+  height: 20%;
+  width: 100%;
+}
+
+/* Homepage - Style of Title Text inside the Model Boxes */
+.title_mbox {
+  font-size: calc(.5em + 0.9vw);
+  color: #ffffff;
+  text-align: center;
+  background-color: #659395;
+}
+
+/* Homepage - Style of Text inside the Model Boxes */
+.description_mbox {
+  font-size: calc(.5em + 0.5vw);
+  text-align: justify;
+  color: #303233;
+  padding: 10px;
+}
+
+/* Homepage - Box is already larger, so that the box don't need to generate new space for the link */
+.link_placeholder {
+  background-color: #edf6f9;
+  width: 100%;
+  height: calc(.7em + 1.8vw);
+}
+
+/* Homepage - Style of Link inside the Model Boxes (hiding) */
+.link_mbox {
+  display: none;
+  justify-content: center;
+}
+
+/* Homepage - Hovering the Model Boxes makes the Link visible */
+.mbox:hover .link_mbox {
+  display: flex;
+  justify-content: center;
+}
+
+/* Model - Style of Result Box */
+#box {
+  border-radius: 4px;
+  border-color: #edf6f9;
+}
+
+/* Model - Color of Non-Result Box */
+.mistake {
+  background-color: #659395;
+}
+
+/* Model - Font of Non-Result Box */
+.mistake h2 {
+  text-align: center;
+  margin: auto;
+  font-size: calc(.4em + 0.8vw);
+  color: #edf6f9;
+}
+
+/* Model - Color of Negativ Result Box */
+.malicious {
+  background-color: rgb(187, 115, 115);
+}
+
+/* Model - Font of Negativ Result Box */
+.malicious h2 {
+  text-align: center;
+  margin: auto;
+  font-size: calc(.4em + 0.8vw);
+  color: rgb(82, 9, 9);
+}
+
+/* Model - Color of Positiv Result Box */
+.safe {
+  background-color: rgb(115, 187, 115);
+}
+
+/* Model - Font of Positiv Result Box */
+.safe h2 {
+  text-align: center;
+  margin: auto;
+  font-size: calc(.4em + 0.8vw);
+  color: rgb(9, 82, 9);
+}
+
+/* Contact Form - Appearance of Box */
+input[type=text], input[type=email], .message {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border-color: #edf6f9;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  
+}
+
+/* Contact Form - User Interaction to Resize Message Textbox */
+textarea {
+  resize: vertical
+}
+
+/* Contact - Send Button to the Right */
+.right_pos {
+  float: right;
+  margin-right: 12px;
+}

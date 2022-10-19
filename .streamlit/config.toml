@@ -1,0 +1,14 @@
+[theme]
+
+# INTERACTIONS
+primaryColor = '#1A1A3F'
+
+# GENERAL
+backgroundColor = '#2C4546'
+
+# SIDEBAR & WIDGETS
+secondaryBackgroundColor = '#659395'
+
+# TEXT
+textColor = '#FFFFFF'
+font = "sans serif" # Possibilities: serif, sans serif & monospace
