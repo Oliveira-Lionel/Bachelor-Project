@@ -5,7 +5,7 @@ import streamlit as st
 
 # PAGE CONFIG
 st.set_page_config(
-    page_icon="✉", 
+    page_icon="📨", 
     page_title="MLM - Contact", 
     layout="wide"
     )
@@ -35,7 +35,7 @@ with st.container():
     with l_col:
         selected_item = st.selectbox(
             "Subject",
-            ("General Question", "Android Malware Detection", "Model 2", "Model 3"))
+            ("General Question", "Android Malware Detection", "WySiWiM"))
         st.markdown("""
             <form action="https://formsubmit.co/seemedunrun@gmail.com" method="POST">
             Name

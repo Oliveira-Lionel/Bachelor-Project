@@ -5,8 +5,8 @@ import streamlit as st
 
 # PAGE CONFIG
 st.set_page_config(
-    page_icon="📱", 
-    page_title="MLM - Model 2", 
+    page_icon="🔍", 
+    page_title="MLM - WySiWiM", 
     layout="wide"
     )
 
@@ -32,13 +32,14 @@ with st.container():
     st.write("---")
     l_col, r_col = st.columns((4, 1))
     with l_col:
-        st.markdown('<div id=title>Model 2</div>', unsafe_allow_html=True)
+        st.markdown('<div id=title>WySiWiM Model</div>', unsafe_allow_html=True)
         st.markdown('''
-        <div id="content">This is an Android Malware Detection model on the approach DexRay published at 
-        MLHat 2021. It's a simple and effective Deep Learning Approach to detect malware 
-        based on Image Representation of Bytecode. (change)
+        <div id="content">WYSIWIM ("What You See Is What It Means") is a novel approach 
+        to learning semantic representations of code via transfer learning, based on 
+        visual representations of source code.
         <br>
-        In the demo, insert an apk file to check for malware. (change)
+        <br>
+        In the demo, choose a mode and insert your code to check it out.
         </div>
         ''', unsafe_allow_html=True)
         st.write("##")
@@ -47,25 +48,23 @@ with st.container():
         st.empty()
     l_col, r_col = st.columns((1, 4))
     with l_col:
-        st.write("##")
-        st.write("##")
         mode = st.radio(
             "Select a mode",
             ('Classification', 'Comparison', 'Vulnerability', 'Analysis'))
 
     with r_col:
         if mode == 'Classification':
-            st.text_area('Paste your code below', height=250)
+            txt1 = st.text_area('Paste your code below')
             st.button('Classify')
         if mode == 'Comparison':
-            st.text_area('Paste your first code below', height=250)
-            st.text_area('Paste your second code below', height=250)
+            txt1 = st.text_area('Paste your first code below')
+            txt2 = st.text_area('Paste your second code below')
             st.button('Compare')
         if mode == 'Vulnerability':
-            st.text_area('Paste your code below', height=250)
+            txt1 = st.text_area('Paste your code below')
             st.button('Check for vulnerability')
         if mode == 'Analysis':
-            st.text_area('Paste your code below', height=250)
+            txt1 = st.text_area('Paste your code below')
             st.button('Analyse')
 
 # FOOTER

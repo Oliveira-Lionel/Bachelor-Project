@@ -12,7 +12,6 @@ st.set_page_config(
 
 # IMAGES
 img_snt_logo = Image.open("images/snt_logo_header.png")
-img_missing = Image.open("images/missing.png")
 
 # CSS
 def local_css(file_name):
@@ -34,7 +33,7 @@ data_url_m1 = base64.b64encode(contents).decode("utf-8")
 file_.close()
 
 # Convert jpg file to base64
-file_ = open(Path.cwd() / 'images/missing.png', "rb")
+file_ = open(Path.cwd() / 'images/literally.jpg', "rb")
 contents = file_.read()
 data_url_m2 = base64.b64encode(contents).decode("utf-8")
 file_.close()
@@ -50,11 +49,10 @@ with st.container():
         st.markdown(f'''
         <div id="mbox_left" class="mbox">
             <img class="img_mbox" src="data:image/jpg;base64,{data_url_m1}">
-            <h2 class="title_mbox">Android Malware Detection</h2>
-            <div class="description_mbox">It's a simple and effective Deep Learning Approach to detect malware 
-            based on Image Representation of Bytecode.</div>
+            <h2 class="title_mbox">DexRay</h2>
+            <div class="description_mbox">An android malware detection model with a simple & effective deep learning approach to detect malware based on image representation of bytecode.</div>
             <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/Android_Malware_Detection" target="_self">Try the DEMO out</a>
+                <a class="link_mbox" href="http://localhost:8501/DexRay" target="_self">Try the DEMO out</a>
             </div>
         </div>
         ''', unsafe_allow_html=True)
@@ -62,41 +60,14 @@ with st.container():
         st.markdown(f'''
         <div class="mbox">
             <img class="img_mbox" src="data:image/jpg;base64,{data_url_m2}">
-            <h2 class="title_mbox">Missing Model 2</h2>
-            <div class="description_mbox">It's a simple and effective Deep Learning Approach to detect malware 
-            based on Image Representation of Bytecode.</div>
+            <h2 class="title_mbox">WySiWiM</h2>
+            <div class="description_mbox">WySiWiM is a novel approach to learning semantic representations of code via transfer learning, based on visual representations of source code. </div>
             <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/Model_2" target="_self">Try the DEMO out</a>
+                <a class="link_mbox" href="http://localhost:8501/WySiWiM" target="_self">Try the DEMO out</a>
             </div>
         </div>
         ''', unsafe_allow_html=True)
 st.write("##")
-with st.container():
-    l_col, r_col = st.columns(2)
-    with l_col:
-        st.markdown(f'''
-        <div id="mbox_left" class="mbox">
-            <img class="img_mbox" src="data:image/jpg;base64,{data_url_m2}">
-            <h2 class="title_mbox">Missing Model 3</h2>
-            <div class="description_mbox">It's a simple and effective Deep Learning Approach to detect malware 
-            based on Image Representation of Bytecode.</div>
-            <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/Android_Malware_Detection" target="_self">Try the DEMO out</a>
-            </div>
-        </div>
-        ''', unsafe_allow_html=True)
-    with r_col:
-        st.markdown(f'''
-        <div class="mbox">
-            <img class="img_mbox" src="data:image/jpg;base64,{data_url_m2}">
-            <h2 class="title_mbox">Missing Model 4</h2>
-            <div class="description_mbox">It's a simple and effective Deep Learning Approach to detect malware 
-            based on Image Representation of Bytecode.</div>
-            <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/Android_Malware_Detection" target="_self">Try the DEMO out</a>
-            </div>
-        </div>
-        ''', unsafe_allow_html=True)
 
 # FOOTER
 # Convert png file to base64
