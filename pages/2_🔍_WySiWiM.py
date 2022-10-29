@@ -3,6 +3,11 @@ from pathlib import Path
 from PIL import Image
 import streamlit as st
 
+from models.wysiwim.vis_ast.ast_alg import from_to_file_ast
+from models.wysiwim.vis_color.color_alg import from_to_file_color
+from models.wysiwim.vis_geometric.geometric_alg import from_to_file_geometric
+from models.wysiwim.vis_st.st_alg import from_to_file_st
+
 # PAGE CONFIG
 st.set_page_config(
     page_icon="🔍", 
@@ -46,26 +51,87 @@ with st.container():
         st.markdown('<div id=title>DEMO</div>', unsafe_allow_html=True)
     with r_col:
         st.empty()
-    l_col, r_col = st.columns((1, 4))
+
+    # We generate the code here, because if they stay blank, the user will be informed to put some valid code inside
+    text = ""
+    text2 = ""
+    l_col, r_col = st.columns((2, 7))
     with l_col:
-        mode = st.radio(
-            "Select a mode",
-            ('Classification', 'Comparison', 'Vulnerability', 'Analysis'))
+        # User needs to choose the programming language of his code
+        prog_lang = st.selectbox(
+            "Select a programming language",
+            ('Java', 'Python'))
+
+        # User can choose between 4 different ways to generate an image
+        method = st.radio(
+            "Select a rendering method",
+            ('AST', 'Geometric', 'Textual', 'Color'))
+
+        # User can choose, which approach will happen with his code
+        approach = st.radio(
+            "Select an approach",
+            ('Code classification', 'Code clone detection', 'Vulnerability detection'))
 
     with r_col:
-        if mode == 'Classification':
-            txt1 = st.text_area('Paste your code below')
-            st.button('Classify')
-        if mode == 'Comparison':
-            txt1 = st.text_area('Paste your first code below')
-            txt2 = st.text_area('Paste your second code below')
-            st.button('Compare')
-        if mode == 'Vulnerability':
-            txt1 = st.text_area('Paste your code below')
-            st.button('Check for vulnerability')
-        if mode == 'Analysis':
-            txt1 = st.text_area('Paste your code below')
-            st.button('Analyse')
+        # If the approach is 'Code clone detection', we have 2 areas of code
+        if approach == 'Code clone detection':
+            text = st.text_area('Paste your first code below')
+            text2 = st.text_area('Paste your second code below')
+        # For approach: 'Code classification' and 'Vulnerability detection'
+        else:
+            text = st.text_area('Paste your code below')
+
+        # Button uses the code for the model, if there
+        if st.button(approach):
+            # Check whether the first textarea has some input, otherwise the user must provide some
+            if text != "":
+                # Enter the correct method provided by the user
+                if method == 'AST':
+                    images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
+                    image = from_to_file_ast(text, images_dir_ast, prog_lang)
+                if method == 'Geometric':
+                    images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
+                    image = from_to_file_geometric(text, images_dir_geometric, prog_lang)
+                if method == 'Textual':
+                    images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
+                    image = from_to_file_st(text, images_dir_st, prog_lang)
+                if method == 'Color':
+                    images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
+                    image = from_to_file_color(text, images_dir_color, prog_lang)
+                # Enter the 'Code clone detection' approach
+                if approach == 'Code clone detection':
+                    # Check whether the second textarea has some input, otherwise the user must provide some
+                    if text2 != "":
+                        # Enter the same method as for the first code
+                        if method == 'AST':
+                            images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
+                            image2 = from_to_file_ast(text2, images_dir_ast, prog_lang)
+                        if method == 'Geometric':
+                            images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
+                            image2 = from_to_file_geometric(text2, images_dir_geometric, prog_lang)
+                        if method == 'Textual':
+                            images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
+                            image2 = from_to_file_st(text2, images_dir_st, prog_lang)
+                        if method == 'Color':
+                            images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
+                            image2 = from_to_file_color(text2, images_dir_color, prog_lang)
+                        #INSERT MODEL PREDICT FROM APPROACH 2
+
+                    else:
+                        st.write("You must provide some valid code for the " + approach + ".")
+                else:
+                    # Enter the 'Code classification' approach
+                    if approach == 'Code classification':
+                        st.write('')
+                        #INSERT MODEL PREDICT HERE FROM APPROACH 1
+
+                    # Enter the 'Vulnerability detection' approach
+                    else:
+                        st.write('')
+                        #INSERT MODEL PREDICT HERE FROM APPROACH 3
+
+            else:
+                st.write("You must provide some valid code for the " + approach + ".")
 
 # FOOTER
 # Convert png file to base64

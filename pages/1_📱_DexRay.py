@@ -13,7 +13,7 @@ import tensorflow_addons as tfa
 # PAGE CONFIG
 st.set_page_config(
     page_icon="📱", 
-    page_title="MLM - Android Malware Detection", 
+    page_title="MLM - DexRay", 
     layout="wide"
     )
 
@@ -77,7 +77,7 @@ with st.container():
                 images_dir = Path.cwd() / 'models/dexray/generated_images'
 
                 # Generate an image of the apk file with the apktoimage(..) function
-                path_of_image = apktoimage(str(apk_file_path), str(images_dir))
+                apktoimage(str(apk_file_path), str(images_dir))
 
                 # Adjust Image (Size) with the decode_img(..) function
                 images_path = str(images_dir / apk_file.name) + ".png"

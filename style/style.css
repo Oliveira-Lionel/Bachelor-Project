@@ -218,32 +218,27 @@ textarea {
   margin-right: 12px;
 }
 
-/* Model 2 - Size of Text in the widget of st.radio */
-.stRadio .st-cg {
-  font-size: calc(.4em + 0.75vw);
-}
-
 /* Model 2 - Size of Textarea for the codes */
-.stTextArea .st-dq {
-  height: calc(4em + 10vw);
+.stTextArea .st-ag {
+  height: calc(4em + 13.5vw);
 }
 
-/* Model 2 - Position of the widget of st.radio */
-.css-1jjmcle {
-  margin-top: calc(1em + 2.5vw);
-}
-
-/* Model 2 - Position of the widget of st.radio */
-.css-1r9v5md {
-  margin-top: calc(1em + 2.5vw);
+/* Model 2 - Size of the Text inside of Textarea for the codes */
+.stTextArea .st-af {
+  font-size: calc(.3em + 0.65vw);
 }
 
 /* Model 2 - Position of Dots in the widget of st.radio */
-.st-bv {
-  margin-top: calc(0.2em + 0.3vw);
+.stRadio .st-dp {
+  margin-top: calc(0.15em + 0.3vw);
 }
 
-/* Model 2 - Size of the Text in of Textarea for the codes */
-.stTextArea .st-af {
-  font-size: calc(.3em + 0.6vw);
+/* Model 2 - Size of Text in the widget of st.radio */
+.stRadio .st-af {
+  font-size: calc(.3em + 0.75vw);
+}
+
+/* Model 2 - Size of Text in the widget of st.selectbox */
+.stSelectbox .st-af {
+  font-size: calc(.3em + 0.75vw);
 }
