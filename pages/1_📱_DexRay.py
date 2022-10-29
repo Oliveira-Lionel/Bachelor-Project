@@ -87,8 +87,6 @@ with st.container():
                 image = tf.expand_dims(image, axis=0)
                 prediction = model.predict(image)
 
-                print(prediction)
-
                 # Get result of variable prediction and check if it's a malware or a goodware
                 prediction = prediction[0][0]
                 result = None
