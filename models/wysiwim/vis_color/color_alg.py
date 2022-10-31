@@ -9,7 +9,7 @@ import imgkit
 
 def from_to_file_color(code, out_path, lang):
     image = render(code, lang)
-    image.save(out_path)
+    image.save(str(out_path / 'image.png'))
 
 
 def render(code, lang):

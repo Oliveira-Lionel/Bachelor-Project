@@ -60,7 +60,7 @@ with st.container():
         # User needs to choose the programming language of his code
         prog_lang = st.selectbox(
             "Select a programming language",
-            ('Java', 'Python'))
+            ('java', 'py'))
 
         # User can choose between 4 different ways to generate an image
         method = st.radio(
@@ -83,20 +83,29 @@ with st.container():
 
         # Button uses the code for the model, if there
         if st.button(approach):
+            # OUTPUT IMAGES DIRS
+            if method == 'AST':
+                images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
+                images_dir_ast.mkdir(parents=True, exist_ok=True)
+            if method == 'Geometric':
+                images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
+                images_dir_geometric.mkdir(parents=True, exist_ok=True)
+            if method == 'Textual':
+                images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
+                images_dir_st.mkdir(parents=True, exist_ok=True)
+            if method == 'Color':
+                images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
+                images_dir_color.mkdir(parents=True, exist_ok=True)
             # Check whether the first textarea has some input, otherwise the user must provide some
             if text != "":
                 # Enter the correct method provided by the user
                 if method == 'AST':
-                    images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
                     image = from_to_file_ast(text, images_dir_ast, prog_lang)
                 if method == 'Geometric':
-                    images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
                     image = from_to_file_geometric(text, images_dir_geometric, prog_lang)
                 if method == 'Textual':
-                    images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
                     image = from_to_file_st(text, images_dir_st, prog_lang)
                 if method == 'Color':
-                    images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
                     image = from_to_file_color(text, images_dir_color, prog_lang)
                 # Enter the 'Code clone detection' approach
                 if approach == 'Code clone detection':
@@ -104,16 +113,12 @@ with st.container():
                     if text2 != "":
                         # Enter the same method as for the first code
                         if method == 'AST':
-                            images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
                             image2 = from_to_file_ast(text2, images_dir_ast, prog_lang)
                         if method == 'Geometric':
-                            images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
                             image2 = from_to_file_geometric(text2, images_dir_geometric, prog_lang)
                         if method == 'Textual':
-                            images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
                             image2 = from_to_file_st(text2, images_dir_st, prog_lang)
                         if method == 'Color':
-                            images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
                             image2 = from_to_file_color(text2, images_dir_color, prog_lang)
                         #INSERT MODEL PREDICT FROM APPROACH 2
 

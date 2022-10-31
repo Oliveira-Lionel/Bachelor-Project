@@ -71,7 +71,7 @@ def keywords_picto(code, lang):
 
 def from_to_file_geometric(code, out_path, lang):
     image = keywords_picto(code, lang)
-    image.save(out_path, )
+    image.save(str(out_path / 'image.png'), )
 
 
 if __name__ == "__main__":

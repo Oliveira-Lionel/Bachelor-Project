@@ -164,7 +164,7 @@ def viz_rec(dot, node, parent = None):
 
 def from_to_file_ast(code, out_path, lang):
     image = generate_viz(code, lang)
-    image.save(out_path)
+    image.save(str(out_path / 'image.png'))
 
 def generate_viz(code, lang):
     ast = parse_program(code)
