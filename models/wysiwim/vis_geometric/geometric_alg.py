@@ -29,10 +29,10 @@ def keywords_picto(code, lang):
     background = (255,255,255)
 
     fontsize = 14
-    font = ImageFont.truetype(FONT_PATH, fontsize)
+    font = ImageFont.truetype(str(FONT_PATH), fontsize)
 
     # load keyword images
-    keyword_forms_dir = KEYWORD_PICS_PATH
+    keyword_forms_dir = str(KEYWORD_PICS_PATH)
     keyword_forms = {}
     for keyword in os.listdir(keyword_forms_dir):
         if keyword.endswith(".png"):
