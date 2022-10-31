@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import javalang
 
 # This might have to be changed for OSes different than ubuntu
-FONT_PATH = '/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf'
+FONT_PATH = Path.cwd() / 'models/wysiwim/vis_geometric/FreeMonoBold.ttf'
 KEYWORD_PICS_PATH = Path.cwd() / 'models/wysiwim/vis_geometric/keyword_forms' # REPLACE <repo_path>
 
 def update_pos(prev_pos, prev_token_pos, new_token_pos, prev_token_size, line_height):
