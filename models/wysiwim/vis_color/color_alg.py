@@ -1,22 +1,22 @@
 import javalang
 import traceback
 from graphviz import Digraph
-from models.wysiwim.vis_color.prettify_js import get_js_library
+# from models.wysiwim.vis_color.prettify_js import get_js_library
+from prettify_js import get_js_library
 import time
 from PIL import Image
 import io
 import imgkit
+from pathlib import Path
 
 def from_to_file_color(code, out_path, lang):
-    image = render(code, lang)
-    image.save(str(out_path / 'image.png'))
+    image = render_and_save(code, lang, str(out_path / 'image.png'))
 
 
-def render(code, lang):
+def render_and_save(code, lang, output_file):
     # uses https://github.com/google/code-prettify for syntax highlighting
     jslib = get_js_library()
-    html_page = """
-        <!DOCTYPE html><html>
+    html_page = """<!DOCTYPE html><html>
         <script>"""+ jslib + """</script>
         <!-- custom version of sunburst style, originally by David Leibovic -->
         <style type="text/css">
@@ -73,8 +73,13 @@ def render(code, lang):
         'quiet': '',
 	'width': 50,
     }
-    image_raw = imgkit.from_string(html_page, False, options)
-    return Image.open(io.BytesIO(image_raw))
+    image_raw = imgkit.from_string(html_page, output_file, options=options)
 
 if __name__ == "__main__":
-    from_to_file_color("<path>/test.java", "<path>/test.png", "C")
+    code = """class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello, World!"); 
+        }
+    }"""
+    from_to_file_color(code, Path.cwd(), "C")
+    
