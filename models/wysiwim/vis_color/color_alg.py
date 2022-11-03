@@ -1,8 +1,7 @@
 import javalang
 import traceback
 from graphviz import Digraph
-# from models.wysiwim.vis_color.prettify_js import get_js_library
-from prettify_js import get_js_library
+from models.wysiwim.vis_color.prettify_js import get_js_library
 import time
 from PIL import Image
 import io
