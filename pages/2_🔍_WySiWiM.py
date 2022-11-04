@@ -55,17 +55,13 @@ with st.container():
     # We generate the code here, because if they stay blank, the user will be informed to put some valid code inside
     text = ""
     text2 = ""
+    button_pressed = 0
     l_col, r_col = st.columns((2, 7))
     with l_col:
-        # User needs to choose the programming language of his code
-        prog_lang = st.selectbox(
-            "Select a programming language",
-            ('Java', 'Python'))
-
         # User can choose between 4 different ways to generate an image
         method = st.radio(
             "Select a rendering method",
-            ('AST', 'Geometric', 'Textual', 'Color'))
+            ('AST (only Java code)', 'Geometric', 'Textual', 'Color'))
 
         # User can choose, which approach will happen with his code
         approach = st.radio(
@@ -85,53 +81,82 @@ with st.container():
         if st.button(approach):
             # Check whether the first textarea has some input, otherwise the user must provide some
             if text != "":
+                img_name = 'image.png'
+                images_dir = Path.cwd() / 'models/wysiwim/generated_images'
+                images_dir.mkdir(parents=True, exist_ok=True)
                 # Enter the correct method provided by the user
-                if method == 'AST':
-                    images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
-                    image = from_to_file_ast(text, images_dir_ast, prog_lang)
+                if method == 'AST (only Java code)':
+                    image = from_to_file_ast(text, images_dir, 'java', img_name)
                 if method == 'Geometric':
-                    images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
-                    image = from_to_file_geometric(text, images_dir_geometric, prog_lang)
+                    image = from_to_file_geometric(text, images_dir, 'any', img_name)
                 if method == 'Textual':
-                    images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
-                    image = from_to_file_st(text, images_dir_st, prog_lang)
+                    image = from_to_file_st(text, images_dir, 'any', img_name)
                 if method == 'Color':
-                    images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
-                    image = from_to_file_color(text, images_dir_color, prog_lang)
+                    image = from_to_file_color(text, images_dir, 'any', img_name)
+
                 # Enter the 'Code clone detection' approach
                 if approach == 'Code clone detection':
                     # Check whether the second textarea has some input, otherwise the user must provide some
                     if text2 != "":
+                        img_name = 'image2.png'
                         # Enter the same method as for the first code
-                        if method == 'AST':
-                            images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
-                            image2 = from_to_file_ast(text2, images_dir_ast, prog_lang)
+                        if method == 'AST (only Java code)':
+                            image2 = from_to_file_ast(text2, images_dir, 'java', img_name)
                         if method == 'Geometric':
-                            images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
-                            image2 = from_to_file_geometric(text2, images_dir_geometric, prog_lang)
+                            image2 = from_to_file_geometric(text2, images_dir, 'any', img_name)
                         if method == 'Textual':
-                            images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
-                            image2 = from_to_file_st(text2, images_dir_st, prog_lang)
+                            image2 = from_to_file_st(text2, images_dir, 'any', img_name)
                         if method == 'Color':
-                            images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
-                            image2 = from_to_file_color(text2, images_dir_color, prog_lang)
+                            image2 = from_to_file_color(text2, images_dir, 'any', img_name)
+                        button_pressed = 2
+
                         #INSERT MODEL PREDICT FROM APPROACH 2
 
                     else:
                         st.write("You must provide some valid code for the " + approach + ".")
                 else:
+                    button_pressed = 1
+                    
                     # Enter the 'Code classification' approach
                     if approach == 'Code classification':
                         st.write('')
+
                         #INSERT MODEL PREDICT HERE FROM APPROACH 1
 
                     # Enter the 'Vulnerability detection' approach
                     else:
                         st.write('')
+                        
                         #INSERT MODEL PREDICT HERE FROM APPROACH 3
 
             else:
                 st.write("You must provide some valid code for the " + approach + ".")
+    
+    st.write("##")
+    if button_pressed == 1:
+        l_col, m_col, r_col = st.columns((1, 1, 1))
+        with l_col:
+            st.write("Generated image from code")
+            img_interface = Image.open("models/wysiwim//generated_images/image.png")
+            st.image(img_interface, use_column_width=True)
+        with m_col:
+            st.empty()
+        with r_col:
+            st.empty()
+    elif button_pressed == 2:
+        l_col, m_col, r_col = st.columns((1, 1, 1))
+        with l_col:
+            st.write("Generated image from first code")
+            img_interface = Image.open("models/wysiwim//generated_images/image.png")
+            st.image(img_interface, use_column_width=True)
+        with m_col:
+            st.write("Generated image from second code")
+            img2_interface = Image.open("models/wysiwim//generated_images/image2.png")
+            st.image(img2_interface, use_column_width=True)
+        with r_col:
+            st.empty()
+    else:
+        st.empty()
 
 # FOOTER
 # Convert png file to base64

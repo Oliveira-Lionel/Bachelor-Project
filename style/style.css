@@ -220,7 +220,7 @@ textarea {
 
 /* Model 2 - Size of Textarea for the codes */
 .stTextArea .st-ag {
-  height: calc(4em + 13.5vw);
+  height: calc(3em + 9.5vw);
 }
 
 /* Model 2 - Size of the Text inside of Textarea for the codes */

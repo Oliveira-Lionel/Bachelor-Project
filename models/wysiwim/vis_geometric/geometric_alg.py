@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import javalang
 
 # This might have to be changed for OSes different than ubuntu
-FONT_PATH = '/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf'
+FONT_PATH = Path.cwd() / 'models/wysiwim/vis_geometric/FreeMonoBold.ttf'
 KEYWORD_PICS_PATH = Path.cwd() / 'models/wysiwim/vis_geometric/keyword_forms' # REPLACE <repo_path>
 
 def update_pos(prev_pos, prev_token_pos, new_token_pos, prev_token_size, line_height):
@@ -29,10 +29,10 @@ def keywords_picto(code, lang):
     background = (255,255,255)
 
     fontsize = 14
-    font = ImageFont.truetype(FONT_PATH, fontsize)
+    font = ImageFont.truetype(str(FONT_PATH), fontsize)
 
     # load keyword images
-    keyword_forms_dir = KEYWORD_PICS_PATH
+    keyword_forms_dir = str(KEYWORD_PICS_PATH)
     keyword_forms = {}
     for keyword in os.listdir(keyword_forms_dir):
         if keyword.endswith(".png"):
@@ -69,9 +69,9 @@ def keywords_picto(code, lang):
         prev_pos = npos
     return image
 
-def from_to_file_geometric(code, out_path, lang):
+def from_to_file_geometric(code, out_path, lang, img_name):
     image = keywords_picto(code, lang)
-    image.save(out_path, )
+    image.save(str(out_path / img_name), )
 
 
 if __name__ == "__main__":

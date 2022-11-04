@@ -162,9 +162,9 @@ def viz_rec(dot, node, parent = None):
             dot.edge(parent, ni)
     return ni
 
-def from_to_file_ast(code, out_path, lang):
+def from_to_file_ast(code, out_path, lang, img_name):
     image = generate_viz(code, lang)
-    image.save(out_path)
+    image.save(str(out_path / img_name))
 
 def generate_viz(code, lang):
     ast = parse_program(code)

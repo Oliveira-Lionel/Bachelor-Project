@@ -6,17 +6,16 @@ import time
 from PIL import Image
 import io
 import imgkit
+from pathlib import Path
 
-def from_to_file_color(code, out_path, lang):
-    image = render(code, lang)
-    image.save(out_path)
+def from_to_file_color(code, out_path, lang, img_name):
+    image = render_and_save(code, lang, str(out_path / img_name))
 
 
-def render(code, lang):
+def render_and_save(code, lang, output_file):
     # uses https://github.com/google/code-prettify for syntax highlighting
     jslib = get_js_library()
-    html_page = """
-        <!DOCTYPE html><html>
+    html_page = """<!DOCTYPE html><html>
         <script>"""+ jslib + """</script>
         <!-- custom version of sunburst style, originally by David Leibovic -->
         <style type="text/css">
@@ -71,10 +70,14 @@ def render(code, lang):
     options = {
         'format': 'png',
         'quiet': '',
-	'width': 50,
+	    'width': 50,
     }
-    image_raw = imgkit.from_string(html_page, False, options)
-    return Image.open(io.BytesIO(image_raw))
+    image_raw = imgkit.from_string(html_page, output_file, options=options)
 
 if __name__ == "__main__":
-    from_to_file_color("<path>/test.java", "<path>/test.png", "C")
+    code = """class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello, World!"); 
+        }
+    }"""
+    from_to_file_color(code, Path.cwd(), "C")
