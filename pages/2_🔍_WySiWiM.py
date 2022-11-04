@@ -79,6 +79,19 @@ with st.container():
 
         # Button uses the code for the model, if there
         if st.button(approach):
+            # OUTPUT IMAGES DIRS
+            if method == 'AST':
+                images_dir_ast = Path.cwd() / 'models/wysiwim/vis_ast/generated_images'
+                images_dir_ast.mkdir(parents=True, exist_ok=True)
+            if method == 'Geometric':
+                images_dir_geometric = Path.cwd() / 'models/wysiwim/vis_geometric/generated_images'
+                images_dir_geometric.mkdir(parents=True, exist_ok=True)
+            if method == 'Textual':
+                images_dir_st = Path.cwd() / 'models/wysiwim/vis_st/generated_images'
+                images_dir_st.mkdir(parents=True, exist_ok=True)
+            if method == 'Color':
+                images_dir_color = Path.cwd() / 'models/wysiwim/vis_color/generated_images'
+                images_dir_color.mkdir(parents=True, exist_ok=True)
             # Check whether the first textarea has some input, otherwise the user must provide some
             if text != "":
                 img_name = 'image.png'
