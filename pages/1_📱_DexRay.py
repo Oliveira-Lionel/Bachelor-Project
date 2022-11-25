@@ -10,6 +10,8 @@ from models.dexray.DexRay import decode_img
 import tensorflow as tf
 import tensorflow_addons as tfa
 
+import time
+
 # PAGE CONFIG
 st.set_page_config(
     page_icon="📱", 
@@ -41,15 +43,17 @@ with st.container():
     with l_col:
         st.markdown('<div id=title>DexRay Model</div>', unsafe_allow_html=True)
         st.markdown('''
-        <div id="content">DexRay is an Android Malware Detection model published at 
-        MLHat 2021. It's a simple and effective Deep Learning Approach to detect malware 
-        based on Image Representation of Bytecode.
-        <br>
-        <br>
-        In the demo, insert an apk file to check for malware. 
+        <div id="content">DexRay is a simple and effective Android Malware Detection 
+        model on a Deep Learning approach and uses a Convolutional Neural Network 
+        architecture, which consists of multiple layers to get information from data.<br>
+        It detects whether an apk file is malware or not based on image representation 
+        of Bytecode.<br><br>
+        Therefore, before the data is used on the model it is converted from an apk 
+        file to an image, which will happen in the background after inserting the apk 
+        file into the File Uploader below in the Demo as well as the probability of 
+        the result being correct will also be shown.<br><br>
         </div>
         ''', unsafe_allow_html=True)
-        st.write("##")
         st.markdown('<div id=title>DEMO</div>', unsafe_allow_html=True)
 
         # Loading the model
@@ -58,6 +62,11 @@ with st.container():
 
         # Upload a file of apk type
         apk_file = st.file_uploader("File Uploader", type="apk")
+
+        # Start timer for the execution, when uploading a file
+        start = time.time()
+
+        # Loading Animation
         with st.spinner('Checking the file..'):
             if apk_file is not None:
                 # Get the content of the file in bytes
@@ -93,10 +102,14 @@ with st.container():
                 if prediction > 0.5:
                     result = "malware"
                     prediction = int(prediction*10000) / 100
-
+                    
                 if prediction <= 0.5:
                     result = "goodware"
                     prediction = int((1-prediction)*10000) / 100
+                
+                # End timer for the execution, when uploading a file
+                end = time.time()
+                running_time = str((int)(end-start))
 
                 # Text box with the result of the checked apk file (if only 1 got checked)
                 # This is called when the result is still None, a mistake has probably occured
@@ -110,6 +123,8 @@ with st.container():
                     <h2>This file is safe to be used on your device.</h2></div>
                     <br>
                     <div id="content">This result has a """ + str(prediction) + """% probability to be correct.</div>
+                    <br>
+                    <div id="content">The running time of this computation was """ + running_time + """s.</div>
                     """, unsafe_allow_html=True)
                 # This is called when the result is "malware"
                 if result == "malware":
@@ -117,6 +132,8 @@ with st.container():
                     <h2>This file contains malware that may harm your device.</h2></div>
                     <br>
                     <div id="content">This result has a """ + str(prediction) + """% probability to be correct.</div>
+                    <br>
+                    <div id="content">The running time of this computation was """ + running_time + """s.</div>
                     """, unsafe_allow_html=True)
     with r_col:
         st.empty()
@@ -136,9 +153,10 @@ with st.container():
         st.markdown('''
         <p class="snt_text"><span class="bold_text">&#160SnT</span>
         <br>
-        SnT is an internationally leading research and innovations centre that together with partners works to establish Luxembourg as a European centre of excellence for secure, reliable, and trustworthy ICT systems and services. In this context SnT achieves excellence by targeting research topics that create high impact, well beyond the academic community.</p>
+        SnT is a research and innovations centre with a meaningful impact on an international scale by developing great solutions for secure, reliable and trustworthy information and communication technology systems and services. It achieves his goals by working with talented people around the world, who are chosen on a selective way to guarantee diversity.</p>
         ''', unsafe_allow_html=True)
     with r_col:
         st.markdown(
             f'<a href="https://twitter.com/SnT_uni_lu"><img class="center_pos" src="data:image/png;base64,{data_url}"></a>',
-            unsafe_allow_html=True)
+            unsafe_allow_html=True,
+        )

@@ -9,7 +9,7 @@ def text2png(code, lang):
 
     fontsize = 14
     font_path = Path.cwd() / 'models/wysiwim/vis_st/FreeMonoBold.ttf'
-    font = ImageFont.truetype(str(font_path), fontsize)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', fontsize)
 
     width, height = ImageDraw.Draw(Image.new('RGBA', (1,1), background)).textsize(code, font)
     image = Image.new('RGBA', (int(width * 1.1), int(height * 1.1)), background)

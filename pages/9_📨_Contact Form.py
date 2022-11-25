@@ -67,7 +67,7 @@ with st.container():
         st.markdown('''
         <p class="snt_text"><span class="bold_text">&#160SnT</span>
         <br>
-        SnT is an internationally leading research and innovations centre that together with partners works to establish Luxembourg as a European centre of excellence for secure, reliable, and trustworthy ICT systems and services. In this context SnT achieves excellence by targeting research topics that create high impact, well beyond the academic community.</p>
+        SnT is a research and innovations centre with a meaningful impact on an international scale by developing great solutions for secure, reliable and trustworthy information and communication technology systems and services. It achieves his goals by working with talented people around the world, who are chosen on a selective way to guarantee diversity.</p>
         ''', unsafe_allow_html=True)
     with r_col:
         st.markdown(

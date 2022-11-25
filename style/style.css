@@ -46,6 +46,12 @@ body, .css-ungq1h, .st-af, .css-8hkptd, p, ol, ul, dl {
   text-align: justify;
 }
 
+/* General - Style of Text with id content2 */
+#content2{
+  font-size: calc(.4em + 0.6vw);
+  text-align: justify;
+}
+
 /* General - Button Appearance */
 button {
   color: #edf6f9;
@@ -225,6 +231,7 @@ textarea {
 
 /* Model 2 - Size of the Text inside of Textarea for the codes */
 .stTextArea .st-af {
+  color: #1e2d2e;
   font-size: calc(.3em + 0.65vw);
 }
 

@@ -5,13 +5,6 @@ name = "pypi"
 
 [packages]
 jupyterlab = "*"
-streamlit = "*"
-tensorflow = "*"
-tensorflow-addons = "*"
-pillow = "*"
-javalang = "*"
-graphviz = "*"
-imgkit = "*"
 
 [dev-packages]
 
