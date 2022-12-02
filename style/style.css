@@ -8,6 +8,11 @@ body, .css-ungq1h, .st-af, .css-8hkptd, p, ol, ul, dl {
   color: #1A1A3F;
 }
 
+/* General - Size of the title of the widgets */
+.css-17z41qg p {
+  font-size: calc(.4em + 0.9vw);
+}
+
 /* Header - Being able to display the "Contact" Link over the header image with the SnT logo */
 .css-1v0mbdj {
   position: relative;
@@ -35,21 +40,28 @@ body, .css-ungq1h, .st-af, .css-8hkptd, p, ol, ul, dl {
 }
 
 /* General - Style of Text with id title */
-#title{
+#title {
   font-size: calc(.5em + 1.4vw);
   font-weight: bold;
 }
 
 /* General - Style of Text with id content */
-#content{
+#content {
   font-size: calc(.4em + 0.8vw);
   text-align: justify;
 }
 
 /* General - Style of Text with id content2 */
-#content2{
+#content2 {
   font-size: calc(.4em + 0.6vw);
   text-align: justify;
+}
+
+/* General - Style of Text with id content_hp */
+#content_hp {
+  font-size: calc(.5em + 1.1vw);
+  text-align: justify;
+  font-weight: bold;
 }
 
 /* General - Button Appearance */

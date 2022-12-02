@@ -17,6 +17,8 @@ import torch.nn as nn
 
 import time
 
+from guesslang import Guess
+
 # Loads image
 def load_img(image_path):
     return Image.open(image_path).convert('RGB')
@@ -32,6 +34,20 @@ def imagetovector(image_path):
     img = load_img(image_path)
     img = data_transforms(img)
     return img
+
+# Check if the given text is a supported programming language
+def guessLang(text):
+    guess = Guess()
+    language_name = guess.language_name(text)
+    list = ["Assembly", "Batchfile", "C", "C#", "C++", "Clojure", "COBOL", "CoffeeScript", "Dart", "DM", "Elixir", "Erlang", "Fortran", "Go", "Groovy", "Haskell", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Lua", "Matlab", "Objective-C", "OCaml", "Pascal", "Perl", "PHP", "Prolog", "Python", "R", "Ruby", "Rust", "Scala", "Swift", "TypeScript", "Visual Basic"]
+    guessed = False
+
+    if text != "":
+        for i in list:
+            if i == language_name:
+                guessed = True
+    
+    return guessed
 
 # PAGE CONFIG
 st.set_page_config(
@@ -129,7 +145,7 @@ with st.container():
             # Loading Animation
             with st.spinner('Checking the ' + text_c + '..'):
                 # Check whether the first textarea has some input, otherwise the user must provide some
-                if text != "":
+                if guessLang(text):
                     img_name = 'image.png'
                     images_dir = Path.cwd() / 'models/wysiwim/generated_images'
                     images_dir.mkdir(parents=True, exist_ok=True)
@@ -161,7 +177,7 @@ with st.container():
                         # Enter the 'Code clone detection' approach
                         if approach == 'Code clone detection':
                             # Check whether the second textarea has some input, otherwise the user must provide some
-                            if text2 != "":
+                            if guessLang(text2):
                                 img2_name = 'image2.png'
                                 # Enter the same method as for the first code
                                 if method == 'AST (only Java code)':
