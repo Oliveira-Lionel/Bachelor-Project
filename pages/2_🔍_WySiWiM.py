@@ -157,20 +157,11 @@ with st.container():
                         except:
                             button_pressed = -1
                     if method == 'Geometric':
-                        try: #thinking
-                            image = from_to_file_geometric(text, images_dir, 'any', img_name)
-                        except:
-                            button_pressed = -1
+                        image = from_to_file_geometric(text, images_dir, 'any', img_name)
                     if method == 'Textual':
-                        try: #thinking
-                            image = from_to_file_st(text, images_dir, 'any', img_name)
-                        except:
-                            button_pressed = -1
+                        image = from_to_file_st(text, images_dir, 'any', img_name)
                     if method == 'Color':
-                        try: #thinking
-                            image = from_to_file_color(text, images_dir, 'any', img_name)
-                        except:
-                            button_pressed = -1
+                        image = from_to_file_color(text, images_dir, 'any', img_name)
 
                     # Check if an error occured, if it's the case, we end the with st.spinner(..)
                     if button_pressed != -1:
@@ -186,20 +177,11 @@ with st.container():
                                     except:
                                         button_pressed = -1
                                 if method == 'Geometric':
-                                    try: #thinking
-                                        image2 = from_to_file_geometric(text2, images_dir, 'any', img2_name)
-                                    except:
-                                        button_pressed = -1
+                                    image2 = from_to_file_geometric(text2, images_dir, 'any', img2_name)
                                 if method == 'Textual':
-                                    try: #thinking
-                                        image2 = from_to_file_st(text2, images_dir, 'any', img2_name)
-                                    except:
-                                        button_pressed = -1
+                                    image2 = from_to_file_st(text2, images_dir, 'any', img2_name)
                                 if method == 'Color':
-                                    try: #thinking
-                                        image2 = from_to_file_color(text2, images_dir, 'any', img2_name)
-                                    except:
-                                        button_pressed = -1
+                                    image2 = from_to_file_color(text2, images_dir, 'any', img2_name)
 
                                 # Check if an error occured, if it's the case, we end the with st.spinner(..)
                                 if button_pressed != -1:
