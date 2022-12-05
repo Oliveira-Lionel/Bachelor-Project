@@ -248,9 +248,9 @@ textarea {
 }
 
 /* Model 2 - Position of Dots in the widget of st.radio */
-.stRadio .st-dp {
+/*.stRadio .st-dp {
   margin-top: calc(0.15em + 0.3vw);
-}
+}*/ /* Sometimes needed, because the small dots go up*/
 
 /* Model 2 - Size of Text in the widget of st.radio */
 .stRadio .st-af {
