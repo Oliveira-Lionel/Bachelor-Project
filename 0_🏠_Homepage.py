@@ -57,7 +57,7 @@ with st.container():
         <div id="mbox_left" class="mbox">
             <img class="img_mbox" src="data:image/jpg;base64,{data_url_m1}">
             <h2 class="title_mbox">DexRay</h2>
-            <div class="description_mbox">DexRay is a simple and effective Android Malware Detection model that detects whether an apk file is malware or safe to be used based on image representation.</div>
+            <div class="description_mbox">DexRay is a simple and effective Android Malware Detection Model that detects whether an APK file is malware or safe, based on image representation.</div>
             <div class="link_placeholder">
                 <a class="link_mbox" href="http://localhost:8501/DexRay" target="_self">Try the DEMO out</a>
             </div>
@@ -68,7 +68,7 @@ with st.container():
         <div class="mbox">
             <img class="img_mbox" src="data:image/jpg;base64,{data_url_m2}">
             <h2 class="title_mbox">WySiWiM</h2>
-            <div class="description_mbox">WySiWiM is a novel approach to learning semantic representations of code via transfer learning, based on visual representations of source code.</div>
+            <div class="description_mbox">WySiWiM consists of 3 Models with their own results that uses visualization and transfer learning to show the opportunities of code semantics learning.</div>
             <div class="link_placeholder">
                 <a class="link_mbox" href="http://localhost:8501/WySiWiM" target="_self">Try the DEMO out</a>
             </div>

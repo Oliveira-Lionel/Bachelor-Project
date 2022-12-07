@@ -83,14 +83,14 @@ with st.container():
         <div id="content">WYSIWIM ("What You See Is What It Means") is an approach that 
         makes use of visualization and transfer learning to present the opportunities of 
         code semantics learning.<br><br>
-        It consists of three different models with their own result:<br></div>
-        <div id="content2">• The code classification model associates a class from a set 
+        It consists of three different Models with their own result:<br></div>
+        <div id="content2">• The Code Classification Model associates a class from a set 
         of possible labels to the given code.<br>
-        • The code clone detection model compares the two given codes with each other to 
+        • The Code Clone Detection Model compares the two given codes with each other to 
         check whether they are semantic clones.<br>
-        • The vulnerability detection model checks if the given code has a vulnerability 
+        • The Vulnerability Detection Model checks if the given code has a vulnerability 
         problem.<br><br></div>
-        It also uses four different rendering methods to convert the given code to a 
+        It also uses four different rendering Methods to convert the given code to a 
         specific image:<br>
         <div id="content2">• AST can only convert Java code into an image. It is a method 
         that renders the code to an optimized abstract syntax tree while giving geometric 
@@ -117,21 +117,21 @@ with st.container():
     with l_col:
         # User can choose between 4 different ways to generate an image
         method = st.radio(
-            "Select a rendering method",
+            "Select a rendering Method",
             ('AST (only Java code)', 'Geometric', 'Textual', 'Color'))
 
         # User can choose, which approach will happen with his code
         approach = st.radio(
-            "Select a model",
-            ('Code classification', 'Code clone detection', 'Vulnerability detection'))
+            "Select a Model",
+            ('Code Classification', 'Code Clone Detection', 'Vulnerability Detection'))
     with r_col:
-        # If the approach is 'Code clone detection', we have 2 areas of code
-        if approach == 'Code clone detection':
+        # If the approach is 'Code Clone Detection', we have 2 areas of code
+        if approach == 'Code Clone Detection':
             text = st.text_area('Paste your first code below')
             text2 = st.text_area('Paste your second code below')
             text_c = 'codes'
 
-        # For approach: 'Code classification' and 'Vulnerability detection'
+        # For approach: 'Code Classification' and 'Vulnerability Detection'
         else:
             text = st.text_area('Paste your code below')
             text_c = 'code'
@@ -165,8 +165,8 @@ with st.container():
 
                     # Check if an error occured, if it's the case, we end the with st.spinner(..)
                     if button_pressed != -1:
-                        # Enter the 'Code clone detection' approach
-                        if approach == 'Code clone detection':
+                        # Enter the 'Code Clone Detection' approach
+                        if approach == 'Code Clone Detection':
                             # Check whether the second textarea has some input, otherwise the user must provide some
                             if guessLang(text2):
                                 img2_name = 'image2.png'
@@ -210,8 +210,8 @@ with st.container():
                         else:
                             button_pressed = 1
 
-                            # Enter the 'Code classification' approach
-                            if approach == 'Code classification':
+                            # Enter the 'Code Classification' approach
+                            if approach == 'Code Classification':
                                 # Model Prediction Approach 1
                                 model_file_dir = Path.cwd() / 'models/wysiwim/cc_model'
                                 image_path = images_dir / img_name
@@ -227,7 +227,7 @@ with st.container():
                                 outputs = model(input_)
                                 _, preds = torch.max(outputs, 1)
 
-                            # Enter the 'Vulnerability detection' approach
+                            # Enter the 'Vulnerability Detection' approach
                             else:
                                 # Model Prediction Approach 3
                                 model_file_dir = Path.cwd() / 'models/wysiwim/vul_model'
@@ -263,7 +263,7 @@ with st.container():
         with l_col:
             st.write("Result:")
             # Result of Approach 1
-            if approach == 'Code classification':
+            if approach == 'Code Classification':
                 preds = preds[0].numpy()
                 list = [[30, 't1'], [100, 't2']] #The List of the classes (only an example right now)
 

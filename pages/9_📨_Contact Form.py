@@ -35,7 +35,7 @@ with st.container():
     with l_col:
         selected_item = st.selectbox(
             "Subject",
-            ("General Question", "Android Malware Detection", "WySiWiM"))
+            ("General Question", "Android Malware Detection Model", "Code Classification Model", "Code Clone Detection Model", "Vulnerability Detection Model"))
         st.markdown("""
             <form action="https://formsubmit.co/seemedunrun@gmail.com" method="POST">
             Name

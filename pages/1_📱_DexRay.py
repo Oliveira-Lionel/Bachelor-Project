@@ -44,12 +44,12 @@ with st.container():
         st.markdown('<div id=title>DexRay Model</div>', unsafe_allow_html=True)
         st.markdown('''
         <div id="content">DexRay is a simple and effective Android Malware Detection 
-        model on a Deep Learning approach and uses a Convolutional Neural Network 
+        Model on a Deep Learning approach and uses a Convolutional Neural Network 
         architecture, which consists of multiple layers to get information from data.<br>
-        It detects whether an apk file is malware or not based on image representation 
+        It detects whether an APK file is malware or not, based on image representation 
         of Bytecode.<br><br>
         Therefore, before the data is used on the model it is converted from an apk 
-        file to an image, which will happen in the background after inserting the apk 
+        file to an image, which will happen in the background after inserting the APK 
         file into the File Uploader below in the Demo as well as the probability of 
         the result being correct will also be shown.<br><br>
         </div>
