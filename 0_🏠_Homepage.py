@@ -42,8 +42,8 @@ file_.close()
 with st.container():
     st.write("---")
     st.markdown('''
-        <div id="content_hp">What is a machine learning model?</div>
-        <div id="content"><br>A machine learning model is an application that makes 
+        <div id="content_hp">What is a Machine Learning Model?</div>
+        <div id="content"><br>A Machine Learning Model is an application that makes 
         a prediction by receiving an input, where the accuracy given in percentage 
         indicates the probability of the prediction being a correct result. To 
         improve the accuracy of the model, it is trained with unseen dataset during 
