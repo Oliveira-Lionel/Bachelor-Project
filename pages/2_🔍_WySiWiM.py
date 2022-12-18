@@ -78,7 +78,7 @@ with st.container():
     st.write("---")
     l_col, r_col = st.columns((4, 1))
     with l_col:
-        st.markdown('<div id=title>WySiWiM Model</div>', unsafe_allow_html=True)
+        st.markdown('<div id=title>WySiWiM Approach</div>', unsafe_allow_html=True)
         st.markdown('''
         <div id="content">WYSIWIM ("What You See Is What It Means") is an approach that 
         makes use of visualization and transfer learning to present the opportunities of 
