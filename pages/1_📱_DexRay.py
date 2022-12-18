@@ -91,9 +91,9 @@ with st.container():
                 # Adjust Image (Size) with the decode_img(..) function
                 images_path = str(images_dir / apk_file.name) + ".png"
                 image = decode_img(images_path)
+                image = tf.expand_dims(image, axis=0)
 
                 # Check the apk file with the model
-                image = tf.expand_dims(image, axis=0)
                 prediction = model.predict(image)
 
                 # Get result of variable prediction and check if it's a malware or a goodware
