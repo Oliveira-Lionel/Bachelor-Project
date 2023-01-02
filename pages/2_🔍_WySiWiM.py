@@ -8,9 +8,6 @@ from models.wysiwim.vis_color.color_alg import from_to_file_color
 from models.wysiwim.vis_geometric.geometric_alg import from_to_file_geometric
 from models.wysiwim.vis_st.st_alg import from_to_file_st
 
-from torchvision.io import read_image
-from torchvision.models import resnet50
-
 import torch
 from torchvision import transforms
 import torch.nn as nn
@@ -35,14 +32,14 @@ def imagetovector(image_path):
     img = data_transforms(img)
     return img
 
-# Check if the given text is a supported programming language
-def guessLang(text):
+# Check if the given code is a supported programming language
+def guessLang(code):
     guess = Guess()
-    language_name = guess.language_name(text)
-    list = ["Assembly", "Batchfile", "C", "C#", "C++", "Clojure", "COBOL", "CoffeeScript", "Dart", "DM", "Elixir", "Erlang", "Fortran", "Go", "Groovy", "Haskell", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Lua", "Matlab", "Objective-C", "OCaml", "Pascal", "Perl", "PHP", "Prolog", "Python", "R", "Ruby", "Rust", "Scala", "Swift", "TypeScript", "Visual Basic"]
+    language_name = guess.language_name(code)
+    list = ["Assembly", "C", "C#", "C++", "Clojure", "COBOL", "CoffeeScript", "Dart", "DM", "Elixir", "Erlang", "Fortran", "Go", "Groovy", "Haskell", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Lua", "Matlab", "Objective-C", "OCaml", "Pascal", "Perl", "PHP", "Prolog", "Python", "R", "Ruby", "Rust", "Scala", "Swift", "TypeScript", "Visual Basic"]
     guessed = False
 
-    if text != "":
+    if code != "":
         for i in list:
             if i == language_name:
                 guessed = True
@@ -81,8 +78,7 @@ with st.container():
         st.markdown('<div id=title>WySiWiM Approach</div>', unsafe_allow_html=True)
         st.markdown('''
         <div id="content">WYSIWIM ("What You See Is What It Means") is an approach that 
-        makes use of visualization and transfer learning to present the opportunities of 
-        code semantics learning.<br><br>
+        makes use of visualization and transfer learning to solve three different Tasks.<br><br>
         It consists of three different Models with their own result:<br></div>
         <div id="content2">• The Code Classification Model associates a class from a set 
         of possible labels to the given code.<br>
@@ -93,7 +89,7 @@ with st.container():
         It also uses four different rendering Methods to convert the given code to a 
         specific image:<br>
         <div id="content2">• AST can only convert Java code into an image. It is a method 
-        that renders the code to an optimized abstract syntax tree while giving geometric 
+        that renders the code to an optimized Abstract Syntax Tree while giving geometric 
         shapes to certain types of nodes.<br>
         • Geometric renders the language keywords of a code to a certain geometric shape.
         <br>
@@ -120,7 +116,7 @@ with st.container():
             "Select a rendering Method",
             ('AST (only Java code)', 'Geometric', 'Textual', 'Color'))
 
-        # User can choose, which approach will happen with his code
+        # User can choose a model
         approach = st.radio(
             "Select a Model",
             ('Code Classification', 'Code Clone Detection', 'Vulnerability Detection'))
@@ -210,39 +206,29 @@ with st.container():
                         else:
                             button_pressed = 1
 
+                            image_path = images_dir / img_name
+
+                            input_ = imagetovector(str(image_path))
+                            input_ = torch.unsqueeze(input_, 0)
+
                             # Enter the 'Code Classification' approach
                             if approach == 'Code Classification':
                                 # Model Prediction Approach 1
-                                model_file_dir = Path.cwd() / 'models/wysiwim/cc_model'
-                                image_path = images_dir / img_name
-
-                                input_ = imagetovector(str(image_path))
-                                input_ = torch.unsqueeze(input_, 0)
-
                                 # Loading the model
-                                model = torch.load(str(model_file_dir))
-
-                                # Check the input with the model
-                                model.eval()
-                                outputs = model(input_)
-                                _, preds = torch.max(outputs, 1)
+                                model_file_dir = Path.cwd() / 'models/wysiwim/cc_model'
 
                             # Enter the 'Vulnerability Detection' approach
                             else:
                                 # Model Prediction Approach 3
-                                model_file_dir = Path.cwd() / 'models/wysiwim/vul_model'
-                                image_path = images_dir / img_name
-
-                                input_ = imagetovector(str(image_path))
-                                input_ = torch.unsqueeze(input_, 0)
-
                                 # Loading the model
-                                model = torch.load(str(model_file_dir))
+                                model_file_dir = Path.cwd() / 'models/wysiwim/vul_model'
+                                
+                            model = torch.load(str(model_file_dir))
 
-                                # Check the input with the model
-                                model.eval()
-                                outputs = model(input_)
-                                _, preds = torch.max(outputs, 1)
+                            # Check the input with the model
+                            model.eval()
+                            outputs = model(input_)
+                            _, preds = torch.max(outputs, 1)
                 else:
                     button_pressed = -1
     
@@ -313,11 +299,10 @@ with st.container():
             st.write("Result:")
             # Result of Approach 2
             preds = preds[0][0][0].detach().numpy()
-            print(preds)
 
             if preds >= 0.7:
                 st.markdown("""<div id="box" class="safe">
-                <h2>The two given codes have a 93% similarity to be semantic clones.</h2></div>
+                <h2>The two given codes have a """ + str(int(preds*10000) / 100) + """% similarity to be semantic clones.</h2></div>
                 """, unsafe_allow_html=True)
             elif preds >= 0.5:
                 st.markdown("""<div id="box" class="malicious">
@@ -326,6 +311,10 @@ with st.container():
             else:
                 st.markdown("""<div id="box" class="malicious">
                 <h2>The two given codes are definitely not semantic clones.</h2></div>
+                """, unsafe_allow_html=True)
+                
+            st.markdown("""<br>
+                <div id="content">The running time of this computation was """ + running_time + """s.</div>
                 """, unsafe_allow_html=True)
         with r_col:
             st.empty()
