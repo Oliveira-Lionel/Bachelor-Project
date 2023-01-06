@@ -59,7 +59,7 @@ with st.container():
             <h2 class="title_mbox">DexRay</h2>
             <div class="description_mbox">DexRay is a simple and effective Android Malware Detection Model that detects whether an APK file is malware or safe, based on image representation.</div>
             <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/DexRay" target="_self">Try the DEMO out</a>
+                <a class="link_mbox" href="/DexRay" target="_self">Try the DEMO out</a>
             </div>
         </div>
         ''', unsafe_allow_html=True)
@@ -70,7 +70,7 @@ with st.container():
             <h2 class="title_mbox">WySiWiM</h2>
             <div class="description_mbox">WySiWiM consists of 3 Models with their own results that uses visualization and transfer learning to show the opportunities of code semantics learning.</div>
             <div class="link_placeholder">
-                <a class="link_mbox" href="http://localhost:8501/WySiWiM" target="_self">Try the DEMO out</a>
+                <a class="link_mbox" href="/WySiWiM" target="_self">Try the DEMO out</a>
             </div>
         </div>
         ''', unsafe_allow_html=True)

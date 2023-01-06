@@ -251,22 +251,18 @@ with st.container():
             # Result of Approach 1
             if approach == 'Code Classification':
                 preds = preds[0].numpy()
-                list = [[30, 't1'], [100, 't2']] #The List of the classes (only an example right now)
+                #List of the possible Classes (Only an Example)
+                list = [[14, 'class_14'], [58, 'class_58']]
 
                 # Associate a class to the model's prediction
                 class_name = ''
                 for i in list:
                     if i[0] == preds:
                         class_name = i[1]
-
-                if class_name != '':
-                    st.markdown("""<div id="box" class="safe">
-                    <h2>Class of the given code: """ + class_name + """</h2></div>
-                    """, unsafe_allow_html=True)
-                else:
-                    st.markdown("""<div id="box" class="malicious">
-                    <h2>We can't associate a class to the given code.</h2></div>
-                    """, unsafe_allow_html=True)
+                
+                st.markdown("""<div id="box" class="safe">
+                <h2>Class of the given code: """ + class_name + """</h2></div>
+                """, unsafe_allow_html=True)
             # Result of Approach 3
             else:
                 preds = preds[0].numpy()
@@ -300,19 +296,15 @@ with st.container():
             # Result of Approach 2
             preds = preds[0][0][0].detach().numpy()
 
-            if preds >= 0.7:
+            if preds >= 0.95:
                 st.markdown("""<div id="box" class="safe">
                 <h2>The two given codes have a """ + str(int(preds*10000) / 100) + """% similarity to be semantic clones.</h2></div>
                 """, unsafe_allow_html=True)
-            elif preds >= 0.5:
-                st.markdown("""<div id="box" class="malicious">
-                <h2>The two given codes are not similar enough to be semantic clones.</h2></div>
-                """, unsafe_allow_html=True)
             else:
                 st.markdown("""<div id="box" class="malicious">
-                <h2>The two given codes are definitely not semantic clones.</h2></div>
+                <h2>The two given codes have a """ + str(int(preds*10000) / 100) + """% similarity, hence probably not semantic clones.</h2></div>
                 """, unsafe_allow_html=True)
-                
+            
             st.markdown("""<br>
                 <div id="content">The running time of this computation was """ + running_time + """s.</div>
                 """, unsafe_allow_html=True)
