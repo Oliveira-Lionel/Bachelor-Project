@@ -1,6 +1,6 @@
 # Developing a Unified Platform for Serving TruX Machine Learning Models
 
-Welcome to the README file for my Bachelor project, developed in collaboration with the Interdisciplinary Centre for Security, Reliability and Trust (SnT) at the University of Luxembourg with the research group TruX during my internship. This project focuses on the deployment of machine learning models for end-users, with the aim of making the process of using these models more accessible and user-friendly.
+This is my Bachelor project, developed during my internship in collaboration with the Interdisciplinary Centre for Security, Reliability and Trust (SnT) at the University of Luxembourg with the TruX research group. Focusing on the deployment of machine learning models created within TruX, in order to provide a more accessible and user-friendly experience of using these models.
 
 ## Abstract
 
